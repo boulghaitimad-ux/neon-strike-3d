@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080b18" />
+  <title>NEON STRIKE 3D</title>
+</head>
+<body>
+  <div id="game-root">
+    <canvas id="game-canvas"></canvas>
+    <div id="hud" class="hidden">
+      <div class="hud-top">
+        <div class="brand-small">NEON<span>STRIKE</span><small> // OPERACIÓN 03</small></div>
+        <div class="objective"><small>OBJETIVO ACTUAL</small><strong id="objective">Elimina a los hostiles</strong></div>
+        <div class="score-panel"><small>PUNTUACIÓN</small><strong id="score">000000</strong></div>
+      </div>
+      <div class="crosshair"><i></i><b></b><em></em><span></span></div>
+      <div class="hud-bottom">
+        <div class="health-panel"><small>INTEGRIDAD</small><div class="health-track"><div id="health-fill"></div></div><strong id="health-text">100%</strong></div>
+        <div class="enemy-panel"><span class="pulse"></span><small>HOSTILES</small><strong id="enemy-count">0</strong></div>
+        <div class="ammo-panel"><div><small>ENERGY RIFLE <span>MK-IV</span></small><strong id="ammo">18 <i>/ 72</i></strong></div><div class="ammo-icon">▰</div></div>
+      </div>
+      <div id="toast" class="toast"></div>
+      <div id="hit-flash"></div>
+    </div>
+
+    <section id="overlay" class="overlay">
+      <div class="overlay-grid"></div>
+      <div class="menu-layout">
+        <div class="menu-copy">
+          <div class="eyebrow"><span class="pulse"></span> SISTEMA DE COMBATE // EN LÍNEA</div>
+          <h1>NEON<br><span>STRIKE</span><sup>3D</sup></h1>
+          <p class="subtitle">MUÉVETE RÁPIDO. APUNTA PRECISO.<br>CONQUISTA EL SECTOR.</p>
+          <div class="menu-rule"></div>
+          <p class="description">Infiltra una ciudad tomada por máquinas hostiles. Combina parkour y combate para abrirte camino hasta el núcleo.</p>
+          <div class="menu-actions">
+            <button id="play-btn" class="primary-btn"><span>INICIAR MISIÓN</span><b>↗</b></button>
+            <button id="levels-btn" class="secondary-btn">SELECCIONAR SECTOR <span>＋</span></button>
+          </div>
+          <div id="level-select" class="level-select hidden">
+            <button data-level="0" class="level-choice active"><b>01</b><span>ENTRENAMIENTO<small>INTRODUCCIÓN</small></span><i>●</i></button>
+            <button data-level="1" class="level-choice"><b>02</b><span>CIUDAD NEÓN<small>COMBATE URBANO</small></span><i>◈</i></button>
+            <button data-level="2" class="level-choice"><b>03</b><span>COMPLEJO FINAL<small>PROTOCOLO JEFE</small></span><i>◆</i></button>
+          </div>
+          <div class="controls">
+            <div><kbd>W A S D</kbd><span>MOVER</span></div><div><kbd>RATÓN</kbd><span>APUNTAR</span></div>
+            <div><kbd>CLICK</kbd><span>DISPARAR</span></div><div><kbd>SPACE</kbd><span>SALTAR</span></div>
+            <div><kbd>SHIFT</kbd><span>CORRER</span></div><div><kbd>R</kbd><span>RECARGAR</span></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="reticle-ring ring-one"></div><div class="reticle-ring ring-two"></div>
+          <div class="hero-silhouette"><div class="hero-head"></div><div class="hero-body"></div><div class="hero-arm"></div></div>
+          <div class="art-label label-top">SECTOR 07 <span>● LIVE</span></div>
+          <div class="art-label label-bottom"><b>01</b><span>PROTOCOLO<br>DE INSERCIÓN</span></div>
+          <div class="art-coordinate">37° 46' N<br>NEON DISTRICT</div>
+        </div>
+      </div>
+      <div class="menu-footer"><span>NS3 // BUILD 1.0.4</span><span>SIMULACIÓN DE COMBATE TÁCTICO</span><span>© NEON DIVISION</span></div>
+    </section>
+
+    <section id="pause-screen" class="modal-screen hidden">
+      <div class="modal-card"><div class="eyebrow">PAUSA DE MISIÓN</div><h2>¿REAGRUPAMOS<span>?</span></h2><p>El sector permanece en espera.</p><button id="resume-btn" class="primary-btn">VOLVER AL COMBATE ↗</button><button id="restart-btn" class="secondary-btn">REINICIAR SECTOR</button><button id="menu-btn" class="text-btn">VOLVER AL MENÚ</button></div>
+    </section>
+    <section id="result-screen" class="modal-screen hidden">
+      <div class="modal-card"><div id="result-eyebrow" class="eyebrow">MISIÓN COMPLETADA</div><h2 id="result-title">SECTOR<span> ASEGURADO</span></h2><p id="result-copy">Todos los hostiles neutralizados.</p><div class="result-score"><small>PUNTUACIÓN FINAL</small><strong id="final-score">000000</strong></div><button id="next-btn" class="primary-btn">SIGUIENTE SECTOR ↗</button><button id="retry-btn" class="secondary-btn">REINTENTAR</button><button id="result-menu-btn" class="text-btn">VOLVER AL MENÚ</button></div>
+    </section>
+    <div id="webgl-error" class="webgl-error hidden">Tu navegador no ha podido iniciar WebGL. Prueba a actualizar el navegador o activar la aceleración por hardware.</div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+export class AudioFX{
+  constructor(){this.ctx=null;this.enabled=true}
+  init(){if(!this.ctx){const C=window.AudioContext||window.webkitAudioContext;if(C)this.ctx=new C()}if(this.ctx?.state==='suspended')this.ctx.resume()}
+  tone(freq=440,duration=.08,type='square',volume=.04,endFreq=null){if(!this.enabled||!this.ctx)return;const o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type=type;o.frequency.setValueAtTime(freq,this.ctx.currentTime);if(endFreq)o.frequency.exponentialRampToValueAtTime(Math.max(20,endFreq),this.ctx.currentTime+duration);g.gain.setValueAtTime(volume,this.ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,this.ctx.currentTime+duration);o.connect(g);g.connect(this.ctx.destination);o.start();o.stop(this.ctx.currentTime+duration)}
+  shoot(){this.tone(180,.09,'sawtooth',.05,70)} hit(){this.tone(700,.05,'triangle',.035,260)} jump(){this.tone(230,.12,'sine',.035,520)} reload(){this.tone(330,.1,'square',.025,420);setTimeout(()=>this.tone(500,.08,'square',.025,620),180)} hurt(){this.tone(120,.2,'sawtooth',.05,55)} win(){this.tone(400,.18,'triangle',.04,700);setTimeout(()=>this.tone(600,.3,'triangle',.04,1000),150)}
+}
